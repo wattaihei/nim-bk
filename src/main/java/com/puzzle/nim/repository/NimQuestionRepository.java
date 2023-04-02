@@ -9,5 +9,5 @@ public interface NimQuestionRepository {
 
     public int insert(NimQuestion nimQuestion);
 
-    public int update(Long questionId, NimQuestion nimQuestion);
+    public int update(Long questionId, Long pileId, Long pileNum);
 }

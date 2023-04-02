@@ -5,8 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-import com.puzzle.nim.domain.NimQuestion;
-
 @Mapper
 public interface NimQuestionMapper {
     List<Long> get(Long questionId);
@@ -15,5 +13,5 @@ public interface NimQuestionMapper {
 
     int insert(@Param("questionId") Long questionId, @Param("piles") List<Long> piles);
 
-    int update(Long questionId, NimQuestion nimQuestion);
+    int update(Long questionId, Long pileId, Long pileNum);
 }

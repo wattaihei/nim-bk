@@ -7,5 +7,5 @@ public interface NimQuestionService {
 
     public NimQuestion get(Long questionId);
 
-    public NimQuestion operate(Long questionId, Long pileId, Long removeNum);
+    public NimQuestion operate(Long questionId, Long pileId, Long removeNum) throws Exception;
 }

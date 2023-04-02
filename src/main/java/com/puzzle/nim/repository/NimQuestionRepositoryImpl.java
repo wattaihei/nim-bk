@@ -35,7 +35,7 @@ public class NimQuestionRepositoryImpl implements NimQuestionRepository {
     }
 
     @Override
-    public int update(Long questionId, NimQuestion nimQuestion) {
-        return 1;
+    public int update(Long questionId, Long pileId, Long pileNum) {
+        return this.nimQuestionMapper.update(questionId, pileId, pileNum);
     }
 }

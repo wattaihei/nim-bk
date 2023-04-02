@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.puzzle.nim.config.InvalidOperationException;
 import com.puzzle.nim.domain.NimQuestion;
 import com.puzzle.nim.service.NimQuestionService;
 
@@ -40,7 +41,13 @@ public class NimQuestionController {
         @RequestParam(value = "pileId", required = true) Long pileId,
         @RequestParam(value = "removeNum", required = true) Long removeNum
     ) {
-        NimQuestion nimQuestion = this.nimQuestionService.operate(questionId, pileId, removeNum);
-        return new ResponseEntity<>(nimQuestion, HttpStatus.OK);
+        try {
+            NimQuestion nimQuestion = this.nimQuestionService.operate(questionId, pileId, removeNum);
+            return new ResponseEntity<>(nimQuestion, HttpStatus.OK);
+        } catch (InvalidOperationException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

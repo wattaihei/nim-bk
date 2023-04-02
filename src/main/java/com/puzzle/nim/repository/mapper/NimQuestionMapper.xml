@@ -33,4 +33,12 @@
         )
         </foreach>
     </insert>
+
+    <update id="update">
+        UPDATE NIM_QUESTION
+        SET REMAINS = #{pileNum}
+        WHERE 
+            QUESTION_ID = #{questionId}
+            AND PILE_ID = #{pileId}
+    </update>
 </mapper>
