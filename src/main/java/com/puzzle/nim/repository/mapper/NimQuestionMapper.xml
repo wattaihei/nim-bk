@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.puzzle.nim.repository.mapper.NimQuestionMapper">
+    <select id="get" resultType="Long">
+        SELECT
+            REMAINS
+        FROM NIM_QUESTION
+        WHERE QUESTION_ID = #{questionId}
+        ORDER BY PILE_ID
+    </select>
+
+    <select id="getNextQuestionId" resultType="Long">
+        SELECT
+            COALESCE(MAX(QUESTION_ID), -1) + 1
+        FROM NIM_QUESTION
+    </select>
+
+    <insert id="insert">
+        INSERT INTO NIM_QUESTION 
+        (
+            QUESTION_ID,
+            PILE_ID,
+            REMAINS
+        ) 
+        VALUES 
+        <foreach collection="piles" separator="," item="remains" index="pileId">
+        (
+            #{questionId},
+            #{pileId},
+            #{remains}
+        )
+        </foreach>
+    </insert>
+</mapper>
